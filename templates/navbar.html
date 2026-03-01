@@ -1,0 +1,46 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+      <img src="{% static 'images/albumlogo.png' %}" alt="Logo" style="width: 40px; height: 40px; border-radius: 50%;" class="me-2">
+      <span>PhotoGallery</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li>
+        
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link text-warning fw-bold" href="{% url 'upload_photo' %}">Add Files</a>
+          </li>
+          
+          <li class="nav-item ms-lg-3">
+            <span class="navbar-text text-light me-2">Hi, {{ user.username }}</span>
+          </li>
+
+          <li class="nav-item">
+            <form action="{% url 'logout' %}" method="post" class="d-inline">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-outline-danger btn-sm">Logout</button>
+            </form>
+          </li>
+          
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Log in</a>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <a class="btn btn-primary btn-sm px-3" href="{% url 'register' %}">Sign IN</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

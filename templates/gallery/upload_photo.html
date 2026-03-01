@@ -1,0 +1,61 @@
+{% extends "main.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Upload New Files</h4>
+                </div>
+
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <!-- Album -->
+                        <div class="mb-3">
+                            <label class="form-label">Album</label>
+                            {{ form.album }}
+                        </div>
+
+                        <!-- Caption -->
+                        <div class="mb-3">
+                            <label class="form-label">Caption</label>
+                            {{ form.caption }}
+                        </div>
+
+                        <!-- File input (MANUAL, NOT Django) -->
+                        <div class="mb-3">
+                            <label class="form-label">Images / Videos</label>
+                            <input
+                                type="file"
+                                name="image"
+                                class="form-control"
+                                multiple
+                                accept="image/*,video/*"
+                            >
+                            {% if form.errors.image %}
+                                <div class="text-danger mt-1">
+                                    {{ form.errors.image }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success">
+                                Post to Gallery
+                            </button>
+                            <a href="{% url 'home' %}" class="btn btn-outline-secondary">
+                                Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
