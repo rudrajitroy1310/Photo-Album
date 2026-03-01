@@ -1,0 +1,41 @@
+{% extends "main.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5 col-lg-4">
+            <div class="card shadow border-0">
+                <div class="card-body p-4">
+                    <h2 class="text-center mb-4 fw-bold text-primary">Login</h2>
+                    
+                    <form method="post" action="{% url 'login' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label class="form-label text-muted small uppercase fw-bold">Username</label>
+                            <input type="text" name="username" class="form-control form-control-lg" placeholder="Enter username" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label text-muted small uppercase fw-bold">Password</label>
+                            <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter password" required>
+                        </div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">Login</button>
+                        </div>
+                    </form>
+
+                    <hr class="my-4">
+
+                    <div class="text-center">
+                        <p class="mb-1 text-muted">Don't have an account?</p>
+                        <a href="{% url 'register' %}" class="text-decoration-none fw-bold">Create a Normal User Account</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

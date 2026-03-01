@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+{% block title %}404 - Page Not Found{% endblock %}
+{% block content %}
+<style>
+body { background-color: #0f1117 !important; color: #e2e8f0 !important; }
+hr   { border-color: rgba(255,255,255,0.08) !important; }
+.error-page { text-align: center; padding: 100px 20px; animation: fadeIn 0.4s ease both; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+.error-code { font-size: 8rem; font-weight: 900; color: #2a2d3a; line-height: 1; }
+.error-msg  { font-size: 1.4rem; color: #8892a4; margin: 16px 0 32px; }
+.btn { transition: all 0.2s ease !important; }
+.btn-primary:hover { box-shadow: 0 4px 14px rgba(99,179,237,0.4) !important; transform: translateY(-1px); }
+</style>
+<div class="error-page">
+    <div class="error-code">404</div>
+    <p class="error-msg">Oops — this page doesn't exist.</p>
+    <a href="{% url 'home' %}" class="btn btn-primary px-4">Go Home</a>
+</div>
+{% endblock %}
